@@ -27,4 +27,9 @@ public class Club {
     @ManyToOne(targetEntity = FootballAssociation.class)
     private FootballAssociation footballAssociation;
 
+
+    @ManyToMany(targetEntity = FootballAssociation.class, fetch = FetchType.LAZY)
+    @JoinTable(name = "club_competitions", joinColumns = @JoinColumn(name = "club"), inverseJoinColumns = @JoinColumn(name = "competitions"))
+    private List<Competition> competitions;
+
 }

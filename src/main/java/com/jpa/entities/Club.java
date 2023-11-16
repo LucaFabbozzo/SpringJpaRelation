@@ -23,4 +23,8 @@ public class Club {
 
     @OneToMany(targetEntity = Player.class, fetch = FetchType.LAZY, mappedBy = "club")
     private List<Player> players;
+
+    @ManyToOne(targetEntity = FootballAssociation.class)
+    private FootballAssociation footballAssociation;
+
 }

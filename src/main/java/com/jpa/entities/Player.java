@@ -5,22 +5,23 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Club {
+public class Player {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
 
-    @OneToOne(targetEntity = Coach.class, cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "id_coach")
-    private Coach coach;
+    @Column(name = "last_name")
+    private String lastName;
+    private String nationality;
+    private Integer age;
+    private String position;
 
-    @OneToMany(targetEntity = Player.class, fetch = FetchType.LAZY, mappedBy = "club")
-    private List<Player> players;
+    @ManyToOne(targetEntity = Club.class)
+    @JoinColumn(name = "id_club")
+    private Club club;
 }
